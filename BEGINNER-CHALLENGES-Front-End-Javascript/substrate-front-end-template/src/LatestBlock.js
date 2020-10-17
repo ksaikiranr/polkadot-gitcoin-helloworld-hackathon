@@ -2,11 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Header, Table, Statistic, Grid, Card, Icon, Tab, Container } from 'semantic-ui-react';
 import { useSubstrate } from './substrate-lib';
 
-function Main(props) {
+function LatestBlock(){
     const { api } = useSubstrate();
-    const { finalized } = props;
     const [blockNumberTimer, setBlockNumberTimer] = useState(0);
-
     const [blockNumber, setBlockNumber] = useState('');
     const [blockHash, setBlockHash] = useState('');
     const [parentHash, setParentHash] = useState('');
@@ -24,15 +22,24 @@ function Main(props) {
         setExtrinsicsRoot(latestBlock.extrinsicsRoot.toString());
     }
 
+    const cardClass = {
+        width: 'auto'
+    };
+
     useEffect(() => {
         getBlock();
-    });
-
-
-
+    })
+    const timer = () => {
+        setBlockNumberTimer(time => time + 1);
+      };
+    
+      useEffect(() => {
+        const id = setInterval(timer, 1000);
+        return () => clearInterval(id);
+      }, []);
 
     return (
-            <Card >
+            <Card centered style={cardClass}>
                 <Card.Content textAlign='center'>
                     <Card.Header>Latest Block Data</Card.Header>
                     <Table celled padded>
@@ -90,12 +97,4 @@ function Main(props) {
     );
 }
 
-export default function BlockNumber(props) {
-    const { api } = useSubstrate();
-    return api.derive &&
-        api.derive.chain &&
-        api.derive.chain.bestNumber &&
-        api.derive.chain.bestNumberFinalized ? (
-            <Main {...props} />
-        ) : null;
-}
+export default  LatestBlock;
