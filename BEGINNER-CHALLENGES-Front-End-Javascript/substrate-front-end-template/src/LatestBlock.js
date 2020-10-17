@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Header, Table, Statistic, Grid, Card, Icon, Tab, Container } from 'semantic-ui-react';
+import { Table, Card} from 'semantic-ui-react';
 import { useSubstrate } from './substrate-lib';
 
 function LatestBlock(){

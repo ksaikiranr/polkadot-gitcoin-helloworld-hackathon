@@ -16,6 +16,7 @@ import TemplateModule from './TemplateModule';
 import Transfer from './Transfer';
 import Upgrade from './Upgrade';
 import LatestBlock from './LatestBlock';
+import SearchBlock from './SearchBlock';
 
 function Main() {
   const [accountAddress, setAccountAddress] = useState(null);
@@ -63,8 +64,8 @@ function Main() {
             <BlockNumber finalized />
           </Grid.Row>
         </Grid>
-        <LatestBlock />
-
+        {<LatestBlock />}
+        <SearchBlock />
       </Container>
       <DeveloperConsole />
     </div>
